@@ -642,14 +642,15 @@ const Main: FC<IMainProps> = () => {
     return <Loading type='app' />
 
   return (
-    <div className='bg-gray-100'>
-      <Header
+    <div className='bg-gray-100 p-[100px] min-h-screen overflow-y-auto overflow-x-hidden'>
+      {/* 隐藏顶部 Header */}
+      {/* <Header
         title={APP_INFO.title}
         isMobile={isMobile}
         onShowSideBar={showSidebar}
         onCreateNewChat={() => handleConversationIdChange('-1')}
-      />
-      <div className="flex rounded-t-2xl bg-white overflow-hidden">
+      /> */}
+      <div className="flex w-full rounded-2xl bg-white overflow-hidden divide-x divide-gray-200">
         {/* sidebar */}
         {!isMobile && renderSidebar()}
         {isMobile && isShowSidebar && (
@@ -663,7 +664,7 @@ const Main: FC<IMainProps> = () => {
           </div>
         )}
         {/* main */}
-        <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)] overflow-y-auto'>
+        <div className='flex-grow flex flex-col'>
           <ConfigSence
             conversationName={conversationName}
             hasSetInputs={hasSetInputs}
@@ -678,8 +679,8 @@ const Main: FC<IMainProps> = () => {
 
           {
             hasSetInputs && (
-              <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>
-                <div className='h-full overflow-y-auto' ref={chatListDomRef}>
+              <div className='relative w-full max-w-[794px] mx-auto mb-3.5 flex flex-col'>
+                <div className='pb-[66px]' ref={chatListDomRef}>
                   <Chat
                     chatList={chatList}
                     onSend={handleSend}

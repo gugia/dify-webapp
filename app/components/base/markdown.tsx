@@ -10,6 +10,13 @@ import { atelierHeathLight } from 'react-syntax-highlighter/dist/esm/styles/hljs
 export function Markdown(props: { content: string }) {
   return (
     <div className="markdown-body">
+      <style jsx global>{`
+        .markdown-body pre, .markdown-body pre code {
+          background-color: #fff !important;
+          width: 100% !important;
+          box-sizing: border-box;
+        }
+      `}</style>
       <ReactMarkdown
         remarkPlugins={[RemarkMath, RemarkGfm, RemarkBreaks]}
         rehypePlugins={[
@@ -27,6 +34,7 @@ export function Markdown(props: { content: string }) {
                   language={match[1]}
                   showLineNumbers
                   PreTag="div"
+                  customStyle={{ backgroundColor: 'transparent', padding: 0, margin: 0, boxShadow: 'none' }}
                 />
               )
               : (

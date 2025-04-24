@@ -15,6 +15,7 @@ import Toast from '@/app/components/base/toast'
 import ChatImageUploader from '@/app/components/base/image-uploader/chat-image-uploader'
 import ImageList from '@/app/components/base/image-uploader/image-list'
 import { useImageFiles } from '@/app/components/base/image-uploader/hooks'
+import { ArrowUpCircleIcon } from '@heroicons/react/24/solid'
 
 export type IChatProps = {
   chatList: ChatItem[]
@@ -118,9 +119,9 @@ const Chat: FC<IChatProps> = ({
   }
 
   return (
-    <div className={cn(!feedbackDisabled && 'px-3.5', 'h-full')}>
+    <div className={cn(!feedbackDisabled && 'px-3.5')}>
       {/* Chat List */}
-      <div className="h-full space-y-[30px]">
+      <div className="space-y-[30px]">
         {chatList.map((item) => {
           if (item.isAnswer) {
             const isLast = item.id === chatList[chatList.length - 1].id
@@ -145,8 +146,8 @@ const Chat: FC<IChatProps> = ({
       </div>
       {
         !isHideSendInput && (
-          <div className={cn(!feedbackDisabled && '!left-3.5 !right-3.5', 'absolute z-10 bottom-0 left-0 right-0')}>
-            <div className='p-[5.5px] max-h-[150px] bg-white border-[1.5px] border-gray-200 rounded-xl overflow-y-auto'>
+          <div className="mt-4">
+            <div className='relative p-[5.5px] bg-white border-[1.5px] border-gray-200 rounded-xl'>
               {
                 visionConfig?.enabled && (
                   <>
@@ -172,7 +173,7 @@ const Chat: FC<IChatProps> = ({
               }
               <Textarea
                 className={`
-                  block w-full px-2 pr-[118px] py-[7px] leading-5 max-h-none text-sm text-gray-700 outline-none appearance-none resize-none
+                  block w-full px-2 pr-[80px] py-[7px] leading-5 max-h-none text-sm text-gray-700 outline-none appearance-none resize-none
                   ${visionConfig?.enabled && 'pl-12'}
                 `}
                 value={query}
@@ -181,8 +182,8 @@ const Chat: FC<IChatProps> = ({
                 onKeyDown={handleKeyDown}
                 autoSize
               />
-              <div className="absolute bottom-2 right-2 flex items-center h-8">
-                <div className={`${s.count} mr-4 h-5 leading-5 text-sm bg-gray-50 text-gray-500`}>{query.trim().length}</div>
+              <div className="absolute top-1/2 right-2 transform -translate-y-1/2 flex items-center h-8">
+                {/* 隐藏计数，不显示输入字符数 */}
                 <Tooltip
                   selector='send-tip'
                   htmlContent={
@@ -192,7 +193,7 @@ const Chat: FC<IChatProps> = ({
                     </div>
                   }
                 >
-                  <div className={`${s.sendBtn} w-8 h-8 cursor-pointer rounded-md`} onClick={handleSend}></div>
+                  <ArrowUpCircleIcon className="w-8 h-8 text-primary-600 cursor-pointer" onClick={handleSend} />
                 </Tooltip>
               </div>
             </div>

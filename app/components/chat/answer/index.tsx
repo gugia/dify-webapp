@@ -168,16 +168,17 @@ const Answer: FC<IAnswerProps> = ({
   return (
     <div key={id}>
       <div className='flex items-start'>
-        <div className={`${s.answerIcon} w-10 h-10 shrink-0`}>
-          {isResponding
-            && <div className={s.typeingIcon}>
+        <div className="relative w-10 h-10 shrink-0 rounded-full bg-primary-600 text-white flex items-center justify-center text-lg font-bold">
+          {isResponding && (
+            <div className={s.typeingIcon}>
               <LoadingAnim type='avatar' />
             </div>
-          }
+          )}
+          Q
         </div>
-        <div className={`${s.answerWrap}`}>
-          <div className={`${s.answer} relative text-sm text-gray-900`}>
-            <div className={`ml-2 py-3 px-4 bg-gray-100 rounded-tr-2xl rounded-b-2xl ${workflowProcess && 'min-w-[480px]'}`}>
+        <div className={`${s.answerWrap} min-w-0`}>
+          <div className={`${s.answer} relative text-sm text-gray-900 min-w-0`}>
+            <div className="ml-2 py-3 px-4 bg-green-50 rounded-tr-2xl rounded-b-2xl overflow-x-auto">
               {workflowProcess && (
                 <WorkflowProcess data={workflowProcess} hideInfo />
               )}
